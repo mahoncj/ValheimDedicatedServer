@@ -8,6 +8,7 @@
         1) $SteamCMD - SteamCMD installed and located within F:\SteamCMD
         2) $Valheim - Valheim Dedicated Server installed via SteamCMD and located within F:\Valheim
         3) $ValheimBackup - A directory where I store weekly backups of the World and a backup of the start_headless_server.bat file
+        4) $StartHeadlessServer - This is my modified version of the start_headless_server.bat file which contains my World info and password.
 
 .EXAMPLE
 
