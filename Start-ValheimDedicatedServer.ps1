@@ -81,19 +81,19 @@ function ui_write_header ($title) {
 
 function backup_valheim_files () {
 
-    $Date = Get-Date -Format 'yyyyMMdd'
+    $date = get-date -format 'yyyyMMddHHmm'
 
-    $Irongate = $home + '\AppData\LocalLow\IronGate';
+    $irongate = $home + '\AppData\LocalLow\IronGate';
 
-    $TestIrongate = Test-Path -Path $Irongate;
+    $TestIrongate = test-path -path $Irongate;
 
     if ($TestIrongate -eq $true) {
 
-        Copy-Item -Path $Irongate -Recurse -Destination "$ValheimBackup\$Date"
+        copy-item -path $Irongate -recurse -destination "$ValheimBackup\$Date"
     }
     else {
 
-        Write-Host "Could not find the IronGate folder containing your worlds. Please check that the IronGate folder exists within $home\AppData\LocalLow." -ForegroundColor Red
+        write-host "Could not find the IronGate folder containing your worlds. Please check that the IronGate folder exists within $home\AppData\LocalLow." -foregroundcolor red
 
     }
 
@@ -123,7 +123,7 @@ try {
     
     ui_start_status "Checking for Updates";
 
-    Set-Location -Path $SteamCMD;
+    set-location -path $SteamCMD;
 
     .\steamcmd.exe +login anonymous +force_install_dir $Valheim +app_update 896660 validate +exit;
 
@@ -131,15 +131,15 @@ try {
 
     ui_start_status "Restoring Valheim Start_Headless_Server Script File";
 
-    Copy-Item $StartHeadlessServer -Destination $Valheim -Force;
+    copy-item $StartHeadlessServer -destination $Valheim -force;
 
     ui_complete_status;
 
     ui_start_status "Starting Valheim Dedicated Server";
 
-    Set-Location $Valheim;
+    set-location $Valheim;
 
-    Start-Process .\start_headless_server.bat;
+    start-process .\start_headless_server.bat;
 
     ui_complete_status;
 
