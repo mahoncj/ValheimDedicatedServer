@@ -89,7 +89,7 @@ function backup_valheim_files () {
 
     if ($TestIrongate -eq $true) {
 
-        copy-item -path $Irongate -recurse -destination "$ValheimBackup\$Date"
+        copy-item -path $Irongate -recurse -destination "$ValheimBackup\Backups\$Date\IronGate"
     }
     else {
 
