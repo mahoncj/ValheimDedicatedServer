@@ -325,7 +325,7 @@ try {
 
     ui_complete_status;
 
-    ui_start_status "Restoring Existing Valheim start_headless_server.bat file to ""$PathToValheimInstall""";
+    ui_start_status "Restoring existing Valheim start_headless_server.bat file to ""$PathToValheimInstall""";
 
     restore_headless_server;
 
