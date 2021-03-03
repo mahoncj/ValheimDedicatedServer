@@ -131,6 +131,40 @@ function backup_valheim_files () {
 
 }
 
+function check_steamcmd () {
+
+    $TestSteamCMD = test-path -path "$PathToSteamCMD\steamcmd.exe";
+
+    if ($TestSteamCMD -ne $true) {
+
+        write-host;
+        write-host "SteamCMD was not found within ""$PathToSteamCMD"". Would you like to download it?" -foregroundcolor yellow;
+        write-host;
+    
+        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "This will download SteamCMD to ""$PathToSteamCMD"".";
+    
+        $quit = New-Object System.Management.Automation.Host.ChoiceDescription "&Quit", "This will terminate the script.";
+    
+        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $quit);
+    
+        $result = $Host.ui.PromptForChoice($null, $null, $options, 0);
+    
+            if ($result -eq 1) {
+    
+                exit;
+    
+            }
+
+        $null = new-item -itemtype directory -Path $PathToSteamCMD;
+
+        $null = invoke-webrequest -uri "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" -method "GET"  -outfile "$PathToSteamCMD\steamcmd.zip";
+
+        $null = expand-archive -path "$PathToSteamCMD\steamcmd.zip" -DestinationPath $PathToSteamCMD;
+        
+    }
+
+}
+
 function update_valheim () {
 
     $ValheimServerProcess = get-process -name "valheim_server" -ErrorAction SilentlyContinue;
@@ -209,6 +243,12 @@ try {
     ### Perform Start Valheim Dedicated Server
 
     ui_write_header "Valheim Dedicated Server - Start Server";
+
+    ui_start_status "Checking for SteamCMD";
+
+    check_steamcmd;
+
+    ui_complete_status;
 
     ui_start_status "Backing up IronGate directory to ""$PathToValheimBackup""";
 
