@@ -14,7 +14,7 @@
 
     Author:    Chris Mahon
     Email:     chrismahon@blueflashylights.com
-    Release:   20210218
+    Release:   20210303
 
 #>
 
@@ -78,7 +78,7 @@ function ui_write_header ($title) {
     clear-host;
 
     $lines = @();
-    $lines += "START VALHEIM DEDICATED SERVER V2.0";
+    $lines += "UPDATE VALHEIM DEDICATED SERVER V1.0";
     $lines += "";
     $lines += "THIS SCRIPT IS STILL IN DEVELOPMENT";
     
