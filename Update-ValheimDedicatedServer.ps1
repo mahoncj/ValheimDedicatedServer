@@ -4,7 +4,7 @@
     
     This will stop the running valheim_server process, backup the worlds, backup the start_headless_server.bat file, and proceed with updating Valheim Dedicated Server.
 
-    To run this script, you must have SteamCMD, Valheim Dedicated Server previously installed, and provide a path backup existing files to.
+    To run this script, you must have SteamCMD, Valheim Dedicated Server previously installed, and provide a path to backup existing files to.
 
 .EXAMPLE
 
