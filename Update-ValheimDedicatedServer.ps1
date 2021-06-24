@@ -15,9 +15,6 @@
     Author:    Chris Mahon
     Email:     chrismahon@blueflashylights.com
     Release:   20210303
-    
-    ui_xxx_status functions
-    Author: David Taylor
 
 #>
 
@@ -118,7 +115,14 @@ function backup_valheim_files () {
     
         if ($TestValheimWorlds -eq $true) {
     
-            copy-item -path $ValheimWorlds -recurse -destination "$PathToValheimBackup\Backups\$Date\Worlds";
+            copy-item -path $ValheimWorlds -recurse -destination "$PathToValheimBackup\Backups\Daily\$Date\Worlds";
+
+            $backups = get-childitems -path "$PathToValheimBackup\Backups\Daily";
+            $Daysback = "-7";
+            $CurrentDate = Get-Date;
+            $DatetoDelete = $CurrentDate.AddDays($Daysback);
+            $null = Get-ChildItem $backups | Where-Object { $_.LastWriteTime -lt $DatetoDelete } | Remove-Item -Recurse -Force;
+            
         }
 
         else {
