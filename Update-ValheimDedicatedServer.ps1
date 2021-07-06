@@ -117,12 +117,14 @@ function backup_valheim_files () {
     
             copy-item -path $ValheimWorlds -recurse -destination "$PathToValheimBackup\Backups\Daily\$Date\Worlds";
 
-            $backups = get-childitems -path "$PathToValheimBackup\Backups\Daily";
+            $backups = Get-ChildItem -path "$PathToValheimBackup\Backups\Daily";
+	    $currentpwd = Get-Location
+	    $null = Set-Location "$PathToValheimBackup\Backups\Daily"
             $Daysback = "-7";
             $CurrentDate = Get-Date;
             $DatetoDelete = $CurrentDate.AddDays($Daysback);
             $null = Get-ChildItem $backups | Where-Object { $_.LastWriteTime -lt $DatetoDelete } | Remove-Item -Recurse -Force;
-            
+            $null = Set-Location $currentpwd;
         }
 
         else {
