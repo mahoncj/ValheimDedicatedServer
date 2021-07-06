@@ -180,7 +180,7 @@ function update_valheim () {
 
     if ($ValheimServerProcess) {
 
-        $null = stop-process -name "valheim_server";
+        $null = taskkill -im valheim_server.exe;
 
     }
 
