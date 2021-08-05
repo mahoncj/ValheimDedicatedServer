@@ -123,7 +123,7 @@ function backup_valheim_files () {
             $Daysback = "-7";
             $CurrentDate = Get-Date;
             $DatetoDelete = $CurrentDate.AddDays($Daysback);
-            $null = Get-ChildItem $backups | Where-Object { $_.LastWriteTime -lt $DatetoDelete } | Remove-Item -Recurse -Force;
+            $null = Get-Item $backups | Where-Object { $_.LastWriteTime -lt $DatetoDelete } | Remove-Item -Recurse -Force;
             $null = Set-Location $currentpwd;
         }
 
