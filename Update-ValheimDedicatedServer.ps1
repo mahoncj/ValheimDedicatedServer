@@ -130,9 +130,8 @@ function backup_valheim_files () {
         else {
     
             write-host;
-            write-host "Could not find the $env:userprofile/AppData/LocalLow/IronGate/Valheim directory containing your existing worlds. Exiting..." -foregroundcolor red;
+            write-host "Could not find the $env:userprofile/AppData/LocalLow/IronGate/Valheim directory containing your existing worlds" -foregroundcolor yellow;
             write-host;
-            exit;
 
         }
     
@@ -221,9 +220,8 @@ function backup_headless_server() {
     else {
 
         write-host;
-        write-host "The start_headless_server.bat file was not located within ""$PathToValheimInstall"" directory. Exiting..." -foregroundcolor red;
+        write-host "The start_headless_server.bat file was not located within ""$PathToValheimInstall"" directory" -foregroundcolor yellow;
         write-host;
-        exit;
 
     }
 
@@ -241,9 +239,9 @@ function restore_headless_server () {
     else {
 
         write-host;
-        write-host "No previous start_headless_server.bat file detected within the ""$PathToValheimBackup"" directory. Exiting..." -foregroundcolor red;
+        write-host "No previous start_headless_server.bat file detected within the ""$PathToValheimBackup"" directory" -foregroundcolor yellow;
         write-host;
-        exit;
+	
     }
 }
 
